@@ -1,0 +1,13 @@
+/* In your styles.css or <style> block */
+header .logo {
+    font-size: 24px;
+    transition: font-size 0.3s ease; /* Optional smooth transition */
+}
+
+@media (max-width: 768px) {
+    header .logo {
+        font-size: 10px !important;
+        white-space: nowrap; /* Prevent text wrapping */
+        color: #0073f1 !important;
+    }
+}
