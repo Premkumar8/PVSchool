@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>{% block title %}PV Academy{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+        /* Custom CSS for Owl Carousel Item Cards */
+        .owl-service-item .item {
+            width: 350px;      /* Fixed width */
+            height: 300px;     /* Fixed height */
+            overflow: hidden;  /* Ensures no content spills outside the boundaries */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        /* Registration Form Specific Styles */
+        #registrationForm {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .form-control:focus {
+            border-color: #f5a425;
+            box-shadow: 0 0 0 0.2rem rgba(245, 164, 37, 0.25);
+        }
+
+        .form-check-input:checked {
+            background-color: #f5a425;
+            border-color: #f5a425;
+        }
+
+        .invalid-feedback {
+            display: block;
+            color: #dc3545;
+            margin-top: 0.25rem;
+        }
+    </style>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-edu-meeting.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/lightbox.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+  <!-- Sub Header -->
+  <!-- <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content"></div>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Header -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <a href="{{ url_for('index') }}" class="logo">
+                          Palaniappan Visalakshi Academy
+                      </a>
+                      <ul class="nav">
+                          <li class="scroll-to-section"><a href="{{ url_for('index') }}" class="active">Home</a></li>
+                          <li><a href="{{ url_for('register') }}">Register</a></li>
+                          <!-- <li class="scroll-to-section"><a href="#apply">Apply Now</a></li> -->
+                          <!-- <li class="has-sub">
+                              <a href="javascript:void(0)">Pages</a>
+                              <ul class="sub-menu">
+                                  <li><a href="meetings.html">Upcoming Meetings</a></li>
+                                  <li><a href="meeting-details.html">Meeting Details</a></li>
+                              </ul>
+                          </li> -->
+                          <!--<li class="scroll-to-section"><a href="#courses">Courses</a></li>-->
+                          <!-- <li class="scroll-to-section"><a href="#contact">Contact Us</a></li>  -->
+                      </ul>
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Content Block -->
+  {% block content %}
+
+  {% endblock %}
+   <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.theme.default.min.css') }}">
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById('bg-video');
+        const audio = document.getElementById('bg-audio');
+
+        // Function to trigger video and audio playback on scroll.
+        function playOnScroll() {
+            // Start video playback if paused.
+            if (video.paused) {
+                video.play().catch(err => {
+                    console.log("Video play error:", err);
+                });
+            }
+            // Start audio playback if paused.
+            if (audio.paused) {
+                audio.play().then(() => {
+                    console.log("Audio started on scroll.");
+                }).catch(err => {
+                    console.log("Audio play error on scroll:", err);
+                });
+            }
+            // Remove the scroll listener after the first successful play attempt.
+            window.removeEventListener("scroll", playOnScroll);
+        }
+
+        // Add the scroll event listener.
+        window.addEventListener("scroll", playOnScroll);
+    });
+    </script>
+
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/isotope.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/owl-carousel.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/lightbox.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/tabs.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/video.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/slick-slider.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

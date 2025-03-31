@@ -1,0 +1,423 @@
+{% extends "base.html" %}
+{% block title %}Registration Form{% endblock %}
+
+{% block content %}
+<section class="contact-us" id="register">
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <form id="registrationForm" method="POST" action="{{ url_for('register') }}" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                    <!-- Additional form fields -->
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" class="form-control" name="name" required
+                               placeholder="Enter your full name">
+                    </div>
+
+                    <!-- Date of Birth with Improved Picker -->
+                    <div class="form-group">
+                        <label>Date of Birth *</label>
+                        <div class="input-icon">
+                            <input type="text" class="form-control datepicker"
+                                   name="dob" autocomplete="off" required
+                                   placeholder="Select your date of birth">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                    </div>
+
+                    <!-- Phone Number Field -->
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <select class="form-control country-code" name="country_code">
+                                    <option value="+91">🇮🇳 +91</option>
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                </select>
+                            </div>
+                            <input type="tel" class="form-control" name="phone"
+                                pattern="[0-9]{10}" required
+                                placeholder="Enter your phone number">
+                        </div>
+                        <small class="form-text text-danger" id="phoneError"></small>
+                        <small class="form-text text-success" id="phoneSuccess" style="display: none;">
+                            ✓ Phone number available
+                        </small>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" class="form-control" name="email" required
+                            placeholder="Enter your email address">
+                        <small class="form-text text-danger" id="emailError"></small>
+                        <small class="form-text text-success" id="emailSuccess" style="display: none;">
+                            ✓ Email available
+                        </small>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-group">
+                        <label>Address *</label>
+                        <input type="text" class="form-control"
+                               id="address" name="address" required
+                               placeholder="Start typing your address...">
+                    </div>
+
+                    <!-- Course Selection -->
+                    <div class="form-group">
+                        <label>Interested Course *</label>
+                        <select class="form-control select2" name="course" id="courseSelect" required>
+                            <option value="">Select Course</option>
+                            {% for course, price in course_prices.items() %}
+                            <option value="{{ course }}" data-price="{{ price/100 }}">
+                                {{ course | capitalize }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Display the Price -->
+                    <input type="hidden" id="coursePrice"  class="form-control" readonly>
+                    <input type="hidden" name="amount" id="amountField"> <!-- Store selected price -->
+
+                    <div class="form-group">
+                        <label>Preferred Slot *</label>
+                        <select class="form-control select2" name="slot" required>
+                            <option value="">Select Slot</option>
+                            <option value="morning">Morning</option>
+                            <option value="afternoon">Afternoon</option>
+                            <option value="evening">Evening</option>
+                        </select>
+                    </div>
+
+                    <!-- Academic Details -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Group *</label>
+                                <select class="form-control select2" name="group" required>
+                                    <option value="">Select Group</option>
+                                    <option>Biology, Physics, Chemistry</option>
+                                    <option>Maths, Computer Science, Physics, Chemistry</option>
+                                    <option>Accountant, Commerce, Economics</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Graduated? *</label>
+                                <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                                    <label class="btn btn-outline-secondary">
+                                        <input type="radio" name="graduated" value="yes" required onclick="toggleCollege(false)"> Yes
+                                    </label>
+                                    <label class="btn btn-outline-secondary">
+                                        <input type="radio" name="graduated" value="no" required onclick="toggleCollege(true)"> No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="collegeField" style="display: none;">
+                            <label>College*</label>
+                            <input type="text" class="form-control" name="college" id="collegeInput"
+                                    placeholder="Enter your College">
+                        </div>
+                    </div>
+
+                    <!-- Academic Scores -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>10th Score (%) *</label>
+                                <input type="number" class="form-control" name="tenth"
+                                       min="0" max="100" step="0.01" required
+                                       placeholder="Enter 10th percentage">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>12th Score (%) *</label>
+                                <input type="number" class="form-control" name="twelfth"
+                                       min="0" max="100" step="0.01" required
+                                       placeholder="Enter 12th percentage">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Button -->
+                    <div class="form-group">
+                        <label>Payment Option *</label>
+                        <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                            <label class="btn btn-outline-secondary">
+                                <input type="radio" name="payment_option" value="pay_now" checked> Pay Now
+                                <p>Note: Enable international transcation in your bank app</p>
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                                <input type="radio" name="payment_option" value="pay_later"> Pay Later
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Payment Button -->
+                    <div class="form-group text-center mt-5">
+                        <button type="submit" id="registerBtn" class="btn btn-success btn-lg">Proceed</button>
+                    </div>
+                    <!-- <div class="form-group text-center mt-5">
+                        <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<style>
+.linear-form {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.country-code {
+    max-width: 140px;
+    border-right: 0;
+    background: #f8f9fa;
+}
+
+.select2-container--default .select2-selection--single {
+    height: calc(1.5em + 1rem + 2px);
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+}
+
+.btn-outline-secondary {
+    border-color: #ced4da;
+}
+
+.btn-outline-secondary.active {
+    background: #f5a425;
+    border-color: #f5a425;
+    color: white;
+}
+
+.address-autocomplete {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23666" width="18px" height="18px"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+}
+.form-text {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.is-valid {
+    border-color: #28a745 !important;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+<script>
+    function toggleCollege(show) {
+        let collegeField = document.getElementById("collegeField");
+        let collegeInput = document.getElementById("collegeInput");
+
+        if (show) {
+            collegeField.style.display = "block";
+            collegeInput.setAttribute("required", "required"); // Make it required
+        } else {
+            collegeField.style.display = "none";
+            collegeInput.removeAttribute("required"); // Remove required if not needed
+            collegeInput.value = ""; // Clear input field when hidden
+        }
+    }
+</script>
+<script>
+    document.getElementById('courseSelect').addEventListener('change', function () {
+        let price = this.options[this.selectedIndex].getAttribute('data-price');
+        if (price) {
+            document.getElementById('coursePrice').value = "₹" + price;
+            document.getElementById('amountField').value = price * 100; // Convert to paise for Stripe
+        }
+    });
+
+    document.getElementById('payNow').addEventListener('click', function () {
+        let course = document.getElementById('courseSelect').value;
+        let amount = document.getElementById('amountField').value;
+
+        if (!course || !amount) {
+            alert("⚠ Please select a course before proceeding!");
+            return;
+        }
+
+        // ✅ Send data to backend
+        let form = document.getElementById('registrationForm');
+        form.action = "/process-payment";
+        form.method = "POST";
+        form.submit();
+    });
+</script>
+<script>
+// Debounce function to limit API calls
+function debounce(func, timeout = 500){
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+}
+
+// Phone Validation
+document.querySelector('input[name="phone"]').addEventListener('input', debounce(function(e) {
+    const phone = e.target.value;
+    const phoneError = document.getElementById('phoneError');
+    const phoneSuccess = document.getElementById('phoneSuccess');
+
+    if (!phone.match(/^[0-9]{10}$/)) {
+        phoneError.textContent = 'Please enter a valid 10-digit number';
+        phoneSuccess.style.display = 'none';
+        return;
+    }
+
+    fetch(`/check-phone?phone=${phone}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.exists) {
+                phoneError.textContent = 'This phone number is already registered';
+                phoneSuccess.style.display = 'none';
+                e.target.setCustomValidity('Phone already exists');
+            } else {
+                phoneError.textContent = '';
+                phoneSuccess.style.display = 'block';
+                e.target.setCustomValidity('');
+            }
+        });
+}));
+
+// Email Validation
+document.querySelector('input[name="email"]').addEventListener('input', debounce(function(e) {
+    const email = e.target.value;
+    const emailError = document.getElementById('emailError');
+    const emailSuccess = document.getElementById('emailSuccess');
+
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        emailError.textContent = 'Please enter a valid email address';
+        emailSuccess.style.display = 'none';
+        return;
+    }
+
+    fetch(`/check-email?email=${encodeURIComponent(email)}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.exists) {
+                emailError.textContent = 'This email is already registered';
+                emailSuccess.style.display = 'none';
+                e.target.setCustomValidity('Email already exists');
+            } else {
+                emailError.textContent = '';
+                emailSuccess.style.display = 'block';
+                e.target.setCustomValidity('');
+            }
+        });
+}));
+
+// Prevent form submission if custom validity is set
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    if (!this.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    this.classList.add('was-validated');
+});
+
+// Date Picker
+flatpickr('.datepicker', {
+    dateFormat: "d/m/Y",
+    maxDate: "today",
+    allowInput: true
+});
+
+// Select2 Initialization
+$('.select2').select2({
+    minimumResultsForSearch: -1,
+    placeholder: "Select an option"
+});
+
+// Inline validation code as provided previously
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        if (!this.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        this.classList.add('was-validated');
+    });
+
+    const phoneInput = document.querySelector('input[name="phone"]');
+    const emailInput = document.querySelector('input[name="email"]');
+    phoneInput.oninput = function () {
+        if (!phoneInput.value.match(/^\+?[0-9]{10,12}$/)) {
+            phoneInput.setCustomValidity("Please enter a valid phone number with 10-12 digits.");
+        } else {
+            phoneInput.setCustomValidity("");
+        }
+    };
+    emailInput.oninput = function () {
+        if (!emailInput.value.match(/^[^@]+@[^@]+\.[^@]+$/)) {
+            emailInput.setCustomValidity("Please enter a valid email address.");
+        } else {
+            emailInput.setCustomValidity("");
+        }
+    };
+});
+</script>
+{% endblock %}

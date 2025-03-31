@@ -1,0 +1,782 @@
+{% extends "base.html" %}
+{% block title %}Palaniappan Visalakshi Study School{% endblock %}
+
+{% block content %}
+  <!-- Main Banner -->
+  <!--<section class="section main-banner" id="top" data-section="section1">-->
+  <!--      <video autoplay muted loop id="bg-video">-->
+  <!--          <source src="{{ url_for('static', filename='assets/images/saraswathi_amma.mp4') }}" type="video/mp4" />-->
+  <!--      </video>-->
+  <!--    <div class="video-overlay header-text">-->
+  <!--        <div class="container">-->
+  <!--          <div class="row">-->
+  <!--            <div class="col-lg-12">-->
+  <!--              <div class="caption">-->
+  <!--            <h6>Welcome Students</h6>-->
+  <!--            <h2>A Simplified Way to Study</h2>-->
+  <!--            <p>Palaniappan Visalakshi Educational Academy for Programming Language with Certifications, Tancet, JEEE Preparation Specialized Coaching.</p>-->
+  <!--            <p>CA Exam Preparation and Coaching.</p>-->
+  <!--            <div class="main-button-red">-->
+  <!--                <div><a href="{{ url_for('register') }}">Register Now!</a></div>-->
+  <!--            </div>-->
+  <!--        </div>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--    </div>-->
+  <!--</section>-->
+
+<section class="section main-banner" id="top" data-section="section1">
+    <!-- Video element without the muted attribute so that audio can play -->
+    <video id="bg-video" autoplay loop poster="{{ url_for('static', filename='assets/images/saraswathi_amma.PNG') }}">
+        <source src="{{ url_for('static', filename='assets/images/saraswathi_amma.mp4') }}" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Separate audio element -->
+    <audio id="bg-audio">
+        <source src="{{ url_for('static', filename='assets/images/saraswathi_amma.mp3') }}" type="audio/mp3" />
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="video-overlay header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="caption">
+                        <h2>A Simplified Way to Study</h2>
+                        <p>
+                            Palaniappan Visalakshi Educational Academy for Programming Language with Certifications, Tancet, JEEE Preparation Specialized Coaching.
+                        </p>
+                        <p>CA Exam Preparation and Coaching.</p>
+                        <div class="main-button-red">
+                            <div><a href="{{ url_for('register') }}">Register Now!</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <!-- Services Section -->
+  <!--<section class="services">-->
+    <!-- ... (keep original services section content) ... -->
+  <!--  <div class="container">-->
+  <!--    <div class="row">-->
+  <!--      <div class="col-lg-12">-->
+  <!--        <div class="owl-service-item owl-carousel">-->
+
+  <!--          <div class="item">-->
+  <!--            <div class="icon">-->
+  <!--              <img src="{{ url_for('static', filename='assets/images/service-icon-01.png') }}" alt="Comprehensive Curriculum">-->
+  <!--            </div>-->
+  <!--            <div class="down-content">-->
+  <!--              <h4>Comprehensive Curriculum</h4>-->
+  <!--              <p>Our courses are designed to cover every essential topic thoroughly, ensuring a deep understanding and solid preparation for exams.</p>-->
+  <!--            </div>-->
+  <!--          </div>-->
+
+  <!--          <div class="item">-->
+  <!--            <div class="icon">-->
+  <!--              <img src="{{ url_for('static', filename='assets/images/service-icon-03.png') }}" alt="Expert Faculty">-->
+  <!--            </div>-->
+  <!--            <div class="down-content">-->
+  <!--              <h4>Expert Faculty</h4>-->
+  <!--              <p>Learn from the best with our team of highly qualified and experienced teachers, dedicated to your academic success.</p>-->
+  <!--            </div>-->
+  <!--          </div>-->
+
+  <!--          <div class="item">-->
+  <!--            <div class="icon">-->
+  <!--              <img src="{{ url_for('static', filename='assets/images/service-icon-02.png') }}" alt="Student Success">-->
+  <!--            </div>-->
+  <!--            <div class="down-content">-->
+  <!--              <h4>Student Success</h4>-->
+  <!--              <p>Our track record speaks volumes, with a high success rate of students excelling in their courses and achieving their goals.</p>-->
+  <!--            </div>-->
+  <!--          </div>-->
+
+  <!--          <div class="item">-->
+  <!--            <div class="icon">-->
+  <!--              <img src="{{ url_for('static', filename='assets/images/service-icon-03.png') }}" alt="Virtual Classrooms">-->
+  <!--            </div>-->
+  <!--            <div class="down-content">-->
+  <!--              <h4>Virtual Classrooms</h4>-->
+  <!--              <p>Experience interactive and engaging online learning environments that allow for real-time collaboration and feedback.</p>-->
+  <!--            </div>-->
+  <!--          </div>-->
+
+  <!--          <div class="item">-->
+  <!--            <div class="icon">-->
+  <!--              <img src="{{ url_for('static', filename='assets/images/service-icon-03.png') }}" alt="Career Networking">-->
+  <!--            </div>-->
+  <!--            <div class="down-content">-->
+  <!--              <h4>Career Networking</h4>-->
+  <!--              <p>Take advantage of our extensive network of alumni and professionals to open up new opportunities and career paths.</p>-->
+  <!--            </div>-->
+  <!--          </div>-->
+
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</section>-->
+
+  <!-- Courses Section -->
+  <section class="upcoming-meetings" id="meetings">
+    <!-- ... (keep original courses section content) ... -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <h2>Courses</h2>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="categories">
+            <h4>Languages Course</h4>
+            <ul>
+              <li><a href="#">Tamil</a></li><br>
+              <li><a href="#">English</a></li><br>
+              <li><a href="#">Dutch</a></li><br>
+              <li><a href="#">German (Tedesco)</a></li><br>
+              <li><a href="#">French</a></li><br>
+              <li><a href="#">Italian</a></li><br>
+            </ul>
+            <div class="main-button-red">
+              <a href="{{ url_for('index') }}">Enroll now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="meeting-item">
+                <div class="thumb">
+                  <div class="price">
+                    <span>INR 19000</span>
+                  </div>
+                  <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='assets/images/meeting-01.jpg') }}" alt="New Lecturer Meeting"></a>
+                </div>
+                <div class="down-content">
+                  <div class="date">
+                    <h6>Feb <span>10</span></h6>
+                  </div>
+                  <a href="{{ url_for('index') }}"><h4>IELTS</h4></a>
+                  <p>Specialized English Training<br>for IELTS Exam.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="meeting-item">
+                <div class="thumb">
+                  <div class="price">
+                    <span>INR 12000</span>
+                  </div>
+                  <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='assets/images/meeting-02.jpg') }}" alt="Online Teaching"></a>
+                </div>
+                <div class="down-content">
+                  <div class="date">
+                    <h6>Feb <span>24</span></h6>
+                  </div>
+                  <a href="{{ url_for('index') }}"><h4>JEEE & Tancet</h4></a>
+                  <p>Special Coaching for JEEE<br>and Tancet Exams.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="meeting-item">
+                <div class="thumb">
+                  <div class="price">
+                    <span>INR 15000</span>
+                  </div>
+                  <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='assets/images/meeting-03.jpg') }}" alt="Higher Education"></a>
+                </div>
+                <div class="down-content">
+                  <div class="date">
+                    <h6>Feb <span>10</span></h6>
+                  </div>
+                  <a href="{{ url_for('index') }}"><h4>JAVA&Spring Boot Framework</h4></a>
+                  <p>Programming course for begineers and experienced<br>professionals.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="meeting-item">
+                <div class="thumb">
+                  <div class="price">
+                    <span>INR 15000</span>
+                  </div>
+                  <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='assets/images/meeting-04.jpg') }}" alt="Student Training"></a>
+                </div>
+                <div class="down-content">
+                  <div class="date">
+                    <h6>Feb <span>10</span></h6>
+                  </div>
+                  <a href="meeting-details.html"><h4>Python Programming</h4></a>
+                  <p>The python course for begineers and experienced<br>professionals.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="apply-now" id="apply">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="item">
+                <h3>APPLY FOR TANCET PREPARATION COURSE</h3>
+                <p>Jumpstart your career with our TANCET preparation courses, designed specifically for aspiring graduate students. Our expert faculty use a targeted approach to cover all essential topics and provide extensive practice materials. Join us to ensure your success and secure a spot in leading postgraduate programs.</p>
+                <div class="main-button-red">
+                  <div class="scroll-to-section"><a href="#contact">Enroll Now!</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item">
+                <h3>ENROLL IN OUR JEE PREPARATION COURSE</h3>
+                <p>Our JEE coaching classes are tailored to help students crack one of India's toughest entrance exams for engineering. With a comprehensive curriculum, regular mock tests, and problem-solving workshops, we guide you through your preparation journey. Start your path to prestigious engineering colleges with us!</p>
+                <div class="main-button-yellow">
+                  <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="accordions is-first-expanded">
+            <article class="accordion">
+                <div class="accordion-head">
+                    <span>About Our Coaching Methodology</span>
+                    <span class="icon">
+                        <i class="icon fa fa-chevron-right"></i>
+                    </span>
+                </div>
+                <div class="accordion-body">
+                    <div class="content">
+                        <p>Our coaching centers employ advanced teaching methodologies and personalized learning experiences to ensure each student achieves academic excellence. With small class sizes, individual attention, and customized study plans, we focus on strengthening your problem-solving and analytical skills essential for TANCET and JEE.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="accordion">
+                <div class="accordion-head">
+                    <span>Why Choose Us For Your Exam Prep?</span>
+                    <span class="icon">
+                        <i class="icon fa fa-chevron-right"></i>
+                    </span>
+                </div>
+                <div class="accordion-body">
+                    <div class="content">
+                        <p>We understand the pivotal role these entrance exams play in shaping your future. Our experienced faculty members are dedicated to providing in-depth coverage of all subjects, accompanied by extensive practice sessions and updated study materials that reflect the latest exam patterns.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="accordion">
+                <div class="accordion-head">
+                    <span>Success Stories and Testimonials</span>
+                    <span class="icon">
+                        <i class="icon fa fa-chevron-right"></i>
+                    </span>
+                </div>
+                <div class="accordion-body">
+                    <div class="content">
+                        <p>Hear from our successful alumni who have excelled in TANCET and JEE. Their experiences highlight the quality and effectiveness of our coaching, helping them to achieve top ranks and gain admissions into prestigious institutions. Join our legacy of success and make your dreams a reality.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="accordion last-accordion">
+                <div class="accordion-head">
+                    <span>Upcoming Batch Details</span>
+                    <span class="icon">
+                        <i class="icon fa fa-chevron-right"></i>
+                    </span>
+                </div>
+                <div class="accordion-body">
+                    <div class="content">
+                        <p>Dont miss out on our upcoming batches for TANCET and JEE preparation. Secure your place early and start your preparation journey with us. We offer flexible batch timings to cater to college students' schedules, ensuring that everyone has the opportunity to attend.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Courses -->
+  <section class="our-courses" id="courses">
+    <!-- ... (keep original our-courses section content) ... -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <h2>Our Popular Courses</h2>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="owl-courses-item owl-carousel">
+            <!-- Example for adding new courses -->
+            <div class="item">
+              <img src="{{ url_for('static', filename='assets/images/java.png') }}" alt="Java Course">
+              <div class="down-content">
+                <h4>Comprehensive Java Development</h4>
+                <div class="info">
+                  <div class="row">
+                    <div class="col-8">
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                    </div>
+                    <div class="col-4">
+                       <span>₹15,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="{{ url_for('static', filename='assets/images/agile.png') }}" alt="Agile Course">
+              <div class="down-content">
+                <h4>Mastering Agile Project Management</h4>
+                <div class="info">
+                  <div class="row">
+                    <div class="col-8">
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                    </div>
+                    <div class="col-4">
+                       <span>₹10,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="{{ url_for('static', filename='assets/images/jira.png') }}" alt="JIRA Course">
+              <div class="down-content">
+                <h4>Mastering JIRA for Project Management</h4>
+                <div class="info">
+                  <div class="row">
+                    <div class="col-8">
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                    </div>
+                    <div class="col-4">
+                       <span>₹10,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="{{ url_for('static', filename='assets/images/java.png') }}" alt="Microservices API">
+              <div class="down-content">
+                <h4>Building Microservices with APIs</h4>
+                <div class="info">
+                  <div class="row">
+                    <div class="col-8">
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                    </div>
+                    <div class="col-4">
+                       <span>₹12,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="{{ url_for('static', filename='assets/images/powerbi.png') }}" alt="PowerBI Course">
+              <div class="down-content">
+                <h4>Data Visualization with PowerBI</h4>
+                <div class="info">
+                  <div class="row">
+                    <div class="col-8">
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                    </div>
+                    <div class="col-4">
+                       <span>₹12,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="{{ url_for('static', filename='assets/images/excel.png') }}" alt="Microsoft Office Course">
+              <div class="down-content">
+                <h4>Advanced Microsoft Office</h4>
+                <div class="info">
+                  <div the="row">
+                    <div class="col-8">
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                    </div>
+                    <div class="col-4">
+                       <span>₹8,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="{{ url_for('static', filename='assets/images/python.png') }}" alt="Python Course">
+              <div class="down-content">
+                <h4>Python Programming for Beginners</h4>
+                <div class="info">
+                  <div class="row">
+                    <div class="col-8">
+                      <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                    </div>
+                    <div class="col-4">
+                       <span>₹15,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Continue adding more items for Machine Learning, AI, Data Analytics, SQL/PostgreSQL, MQTT/API, and IOT courses in the same format -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Facts Section -->
+  <section class="our-facts">
+    <!-- ... (keep original facts section content) ... -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2>A Few Facts About Our Academy</h2>
+            </div>
+            <div class="col-lg-6">
+              <div class="row">
+                <div class="col-12">
+                  <div class="count-area-content percentage">
+                    <div class="count-digit">94</div>
+                    <div class="count-title">Succesed Students</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="count-area-content">
+                    <div class="count-digit">20</div>
+                    <div class="count-title">Current Teachers</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="row">
+                <div class="col-12">
+                  <div class="count-area-content new-students">
+                    <div class="count-digit">71</div>
+                    <div class="count-title">New Students</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="count-area-content">
+                    <div class="count-digit">1</div>
+                    <div class="count-title">Awards</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 align-self-center">
+          <div class="video">
+            <a href="https://www.youtube.com/watch?v=HndV87XpkWg" target="_blank"><img src="C:/Users/TECNICO02/Downloads/edu-meeting/edu-meeting/assets/images/play-icon.png" alt=""></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Teachers Section -->
+   <section class="upcoming-meetings" id="meetings">
+    <!-- ... (keep original courses section content) ... -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <h2>Meet our teachers</h2>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="meeting-item">
+                <div class="thumb">
+                  <a href="#"><img src="{{ url_for('static', filename='assets/images/course-02.jpg') }}" alt="New Lecturer Meeting"></a>
+                </div>
+                <div class="down-content">
+                  <a href="#"><h4>Teachers from USA, New York, Boston and across other state.</h4></a>
+                  <!-- <p>Specialized English Training<br>for IELTS Exam.</p> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="meeting-item">
+                <div class="thumb">
+                  <a href="#"><img src="{{ url_for('static', filename='assets/images/course-03.jpg') }}" alt="Online Teaching"></a>
+                </div>
+                <div class="down-content">
+                  <a href="#"><h4>Teachers from Italy, Netherlands, Germany, Sweden, France.</h4></a>
+                  <!-- <p>Special Coaching for JEEE<br>and Tancet Exams. -->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="meeting-item">
+                <div class="thumb">
+                  <a href="#"><img src="{{ url_for('static', filename='assets/images/course-04.jpg') }}" alt="Higher Education"></a>
+                </div>
+                <div class="down-content">
+                  <a href="#"><h4>Teachers from Chennai, Coimbatore, Madurai, Karur.</h4></a>
+                  <!-- <p>Programming course for begineers and experienced.</p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+   <section class="contact-us" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <h2>Contact Us</h2>
+          </div>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <!--<div class="col-lg-8 align-self-center">-->
+        <!--  <div class="row">-->
+        <!--    <div class="col-lg-12">-->
+        <!--      <form id="contact" action="" method="post">-->
+        <!--        <div class="row">-->
+        <!--          <div class="col-lg-12">-->
+        <!--            <h2>Let's get in touch</h2>-->
+        <!--          </div>-->
+        <!--          <div class="col-lg-4">-->
+        <!--            <fieldset>-->
+        <!--              <input name="name" type="text" id="name" placeholder="YOUR NAME...*" required>-->
+        <!--            </fieldset>-->
+        <!--          </div>-->
+        <!--          <div class="col-lg-4">-->
+        <!--            <fieldset>-->
+        <!--              <input name="email" type="email" id="email" placeholder="YOUR EMAIL..." required>-->
+        <!--            </fieldset>-->
+        <!--          </div>-->
+        <!--          <div class="col-lg-4">-->
+        <!--            <fieldset>-->
+        <!--              <input name="subject" type="text" id="subject" placeholder="SUBJECT...*" required>-->
+        <!--            </fieldset>-->
+        <!--          </div>-->
+        <!--          <div class="col-lg-12">-->
+        <!--            <fieldset>-->
+        <!--              <textarea name="message" rows="6" class="form-control" id="message" placeholder="YOUR MESSAGE..." required></textarea>-->
+        <!--            </fieldset>-->
+        <!--          </div>-->
+        <!--          <div class="col-lg-12">-->
+        <!--            <fieldset>-->
+        <!--              <button type="submit" id="form-submit" class="main-button">SEND MESSAGE NOW</button>-->
+        <!--            </fieldset>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--      </form>-->
+        <!--    </div>-->
+        <!--  </div>-->
+        <!--</div>-->
+        <div class="col-lg-8 align-self-center">
+            <form id="contact" action="{{ url_for('contact') }}" method="post">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Let's get in touch</h2>
+                    </div>
+                    <div class="col-lg-4">
+                        <fieldset>
+                            <input name="name" type="text" id="name" placeholder="YOUR NAME...*" required>
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-4">
+                        <fieldset>
+                            <input name="email" type="email" id="email" placeholder="YOUR EMAIL..." required>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-4">
+                        <fieldset>
+                            <input name="subject" type="text" id="subject" placeholder="SUBJECT...*" required>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                        <fieldset>
+                            <textarea name="message" rows="6" class="form-control" id="message" placeholder="YOUR MESSAGE..." required></textarea>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                        <fieldset>
+                            <button type="submit" id="form-submit" class="main-button">SEND MESSAGE NOW</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4">
+          <div class="right-info">
+            <ul>
+              <li>
+                <h6>Phone Number</h6>
+                <span>8939558625</span>
+              </li>
+              <li>
+                <h6>Email Address</h6>
+                <span>alagupl2710@gmail.com</span>
+              </li>
+              <li>
+                <h6>Street Address</h6>
+                <span>Coimbatore, TamilNadu, India</span>
+              </li>
+              <li>
+                <h6>Website URL</h6>
+                <span>pvschool.pythonanywhere.com/index</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+        <p>Copyright © 2025 Palaniappan Visalakshi Academy Co., Ltd. All Rights Reserved.</p>
+    </div>
+  </section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+      $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+          loop: true,
+          margin: 10,
+          nav: true,
+          responsive: {
+            0: {
+              items: 1,
+            },
+            600: {
+              items: 2,
+            },
+            1000: {
+              items: 3,
+            },
+          },
+        });
+      });
+    </script>
+  <script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+      var
+      direction = section.replace(/#/, ''),
+      reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+      reqSectionPos = reqSection.offset().top - 0;
+
+      if (isAnimate) {
+        $('body, html').animate({
+          scrollTop: reqSectionPos },
+        800);
+      } else {
+        $('body, html').scrollTop(reqSectionPos);
+      }
+
+    };
+
+    var checkSection = function checkSection() {
+      $('.section').each(function () {
+        var
+        $this = $(this),
+        topEdge = $this.offset().top - 80,
+        bottomEdge = topEdge + $this.height(),
+        wScroll = $(window).scrollTop();
+        if (topEdge < wScroll && bottomEdge > wScroll) {
+          var
+          currentId = $this.data('section'),
+          reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+          reqLink.closest('li').addClass('active').
+          siblings().removeClass('active');
+        }
+      });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+      e.preventDefault();
+      showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+      checkSection();
+    });
+  </script>
+{% endblock %}
